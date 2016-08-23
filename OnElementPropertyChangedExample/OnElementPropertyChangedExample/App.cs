@@ -11,6 +11,13 @@ namespace OnElementPropertyChangedExample
     {
         public App()
         {
+            var customView = new CustomView()
+            {
+                VerticalOptions = LayoutOptions.StartAndExpand,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                HeightRequest = 120,
+                WidthRequest = 120
+            };
             // The root page of your application
             MainPage = new ContentPage
             {
@@ -18,9 +25,18 @@ namespace OnElementPropertyChangedExample
                 {
                     VerticalOptions = LayoutOptions.Center,
                     Children = {
-                        new Label {
-                            HorizontalTextAlignment = TextAlignment.Center,
-                            Text = "Welcome to Xamarin Forms!"
+                        new StackLayout()
+                        {
+                            VerticalOptions = LayoutOptions.FillAndExpand,
+                            HorizontalOptions = LayoutOptions.FillAndExpand,
+                            Children =
+                            {
+                                customView,
+                                new Button { Text = "Red", Command = new Command(()=>customView.CustomBackgroundColor = Color.Red) },
+                                new Button { Text = "Green", Command = new Command(()=>customView.CustomBackgroundColor = Color.Green) },
+                                new Button { Text = "Blue", Command = new Command(()=>customView.CustomBackgroundColor = Color.Blue) },
+                                new Button { Text = "Clear", Command = new Command(()=>customView.CustomBackgroundColor = Color.Transparent) }
+                            }
                         }
                     }
                 }

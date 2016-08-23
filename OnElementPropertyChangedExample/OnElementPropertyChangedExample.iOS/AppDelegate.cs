@@ -24,8 +24,13 @@ namespace OnElementPropertyChangedExample.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
-
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             return base.FinishedLaunching(app, options);
+        }
+
+        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }
